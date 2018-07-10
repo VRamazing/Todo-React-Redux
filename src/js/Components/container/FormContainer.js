@@ -9,12 +9,19 @@ class FormContainer extends Component {
   constructor() {
 
     super();
+   
     let date = new Date();
     let month = (date.getMonth() + 1 );
     month = month / 10 == 0 ? month : "0" + month;
     let dateInMonth = date.getDate();
     dateInMonth = dateInMonth / 10 != 0 ? dateInMonth : "0" + dateInMonth;
-    let initialDate = date.getFullYear() + "-" + month + "-" + dateInMonth + "T" + date.getHours() + ":" + date.getMinutes();
+    let hours = date.getHours();
+    hours = hours / 10 != 0 ? hours : "0" + hours;
+    let mins = date.getMinutes();
+    console.log(mins);
+    mins = mins / 10 != 0 ? mins : "0" + mins;
+    let initialDate = date.getFullYear() + "-" + month + "-" + dateInMonth + "T" + hours + ":" + mins;
+    
     this.state = {
       task_title: "",
       task_description: "",
@@ -28,9 +35,27 @@ class FormContainer extends Component {
       // list : ["Get gf", "Start a company", "Recover all hair"]
     };
 
+
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+    this.onEdit = this.onEdit.bind(this);
 
+  }
+
+  initDate(){
+    let date = new Date();
+    let month = (date.getMonth() + 1 );
+    month = month / 10 == 0 ? month : "0" + month;
+    let dateInMonth = date.getDate();
+    dateInMonth = dateInMonth / 10 != 0 ? dateInMonth : "0" + dateInMonth;
+    let hours = date.getHours();
+    hours = hours / 10 != 0 ? hours : "0" + hours;
+    let mins = date.getMinutes();
+    console.log(mins);
+    mins = mins / 10 != 0 ? mins : "0" + mins;
+    let initialDate = date.getFullYear() + "-" + month + "-" + dateInMonth + "T" + hours + ":" + mins;
   }
 
   handleChange(event) {
@@ -54,21 +79,34 @@ class FormContainer extends Component {
 
   }
 
+  onDelete(item){
+    var updatedList = this.state.list.filter(function(val, index){
+      return item !== val;
+    });
+
+    this.setState({
+      list: updatedList
+    })
+  }
+
+  onEdit(item){
+    this.state.task_title = item.title;
+    this.state.task_description = item.description;
+
+    console.log(this.state);
+    this.onDelete(item);
+
+
+  }
+
   render() {
+    console.log(this.state.task_due_date);
 
     const  {task_title}  = this.state;
     const  {task_description} = this.state;
     const {task_due_date} = this.state;
-    console.log(this.state);
 
-    const items = this.state.list.map((item,index)=>{
-
-      return( <li key={index}>
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
-      </li>);
-
-    });
+    const Todos = this.state.list.map((item,index)=> <ToDoList todo = {item} onDelete = {this.onDelete} key = {index} onEdit = {this.onEdit} />);
     
     return (
 
@@ -111,9 +149,12 @@ class FormContainer extends Component {
 
         </div>
 
-        <div className = "col-md-6">
-           <ToDoList todo = {this.state.list}/>
-        </div>
+     
+          <ul style = {{marginTop: "10px"}}>
+            {Todos}
+          </ul>
+           
+        
 
       </div>
       
