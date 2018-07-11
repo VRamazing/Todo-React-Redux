@@ -2,9 +2,14 @@
   parser: "babel-eslint",
   "rules": {
   		"no-unused-vars": 0,
+  		"linebreak-style": 0,
+  		"no-aler":0
   },
 
    "globals": {
-    "document": true
-  }
+    "document": true,
+    "window": true,
+
+  },
+   "extends": ["airbnb-base"],
 }
