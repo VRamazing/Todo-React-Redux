@@ -82,7 +82,7 @@ class FormContainer extends Component {
     this.state.taskTitle = item.title;
     this.state.taskDescription = item.description;
 
-    console.log(this.state);
+    // console.log(this.state);
     this.onDelete(item);
   }
 
