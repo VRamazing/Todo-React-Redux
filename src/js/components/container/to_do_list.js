@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import FormsContainer from './form_container';
+import PropTypes from 'prop-types';
 
 const buttonStyles = { padding: '5px', marginLeft: '5px', cursor: 'pointer' };
-
 
 class ToDoList extends Component {
   constructor() {
@@ -37,4 +36,9 @@ class ToDoList extends Component {
   }
 }
 
+ToDoList.propTypes = {
+  todo : PropTypes.object.isRequired
+}
+
 export default ToDoList;
+
