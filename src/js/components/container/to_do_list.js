@@ -21,6 +21,19 @@ class ToDoList extends Component {
     // console.log('Delete called');
   }
 
+  readableDateFormat(dateTimeString){
+    let datetimeArr = dateTimeString.split("T");
+    let timeStr = datetimeArr[1];
+    let dateStrArr = datetimeArr[0].split("-");
+    const day = dateStrArr[2];
+    const month = dateStrArr[1];
+    const year = dateStrArr[0];
+    return `${day}/${month}/${year} | ${timeStr}`;
+
+  }
+
+
+
   render() {
     return (<div>
           <li>
@@ -30,7 +43,7 @@ class ToDoList extends Component {
               <button className = 'btn btn-warning' style = {buttonStyles} onClick = {this.handleEdit}>Edit</button>
               <button className = 'btn btn-danger' style = {buttonStyles} onClick = {this.handleDelete}>Delete</button>
             </h3>
-            <span style = {{ color: '#acacac' }}>{this.props.todo.due}</span>
+            <span style = {{ color: '#acacac' }}>{this.readableDateFormat(this.props.todo.due)}</span>
             <p>{this.props.todo.description}</p>
            </li></div>);
   }

@@ -42,6 +42,8 @@ class App extends Component {
     this.onDelete(item);
   }
 
+  fun(){return "React is fun";}
+
 
   render() {
     const state = this.state;
