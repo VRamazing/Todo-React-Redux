@@ -8,26 +8,10 @@ import initDate from './getDate.js';
 class FormContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.stater;
+    this.state = this.props.state;
     this.state.taskDueDate = initDate();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  onDelete(item) {
-    const updatedList = this.state.list.filter((val, index) => item !== val);
-    this.props.stateChangeFunc({
-      list: updatedList,
-    });
-  }
-
-  onEdit(item) {
-    this.setState({
-      taskTitle: item.title,
-      taskDescription: item.description,
-      taskDueDate: item.taskDueDate
-    })
-    this.onDelete(item);
   }
 
   handleChange(event) {
@@ -37,7 +21,7 @@ class FormContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.state = this.props.stater;
+    this.state = this.props.state;
     const todo = {
       title: this.state.taskTitle,
       description: this.state.taskDescription,
@@ -62,12 +46,12 @@ class FormContainer extends Component {
   } 
 
   render() {
+    this.state = this.props.state;
     const { taskTitle } = this.state;
     const { taskDescription } = this.state;
     const { taskDueDate } = this.state;
 
     return (
-
 
           <form id='article-form' style = {{ width: '100%' }}>
 
@@ -98,7 +82,6 @@ class FormContainer extends Component {
               handleChange={this.handleChange}
             />
 
-
             <button type = 'submit' className = 'btn btn-info' onClick = {this.handleSubmit}>Add item</button>
           </form>
 
@@ -107,7 +90,7 @@ class FormContainer extends Component {
 }
 
 FormContainer.propTypes = {
-  stater : PropTypes.object.isRequired
+  state : PropTypes.object.isRequired
 }
 
 export default FormContainer;

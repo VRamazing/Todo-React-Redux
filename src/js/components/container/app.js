@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FormContainer from './form_container';
 import ToDoList from './to_do_list';
-import initDate from './getDate.js'; 
-
 
 class App extends Component {
   constructor() {
@@ -58,7 +56,7 @@ class App extends Component {
     
       <div className = 'row'>
         <div className = 'col-md-6'>
-          <FormContainer stater = {state} stateChangeFunc = {this.onStateChange} onEditFunc = {this.onEdit} onDeleteFunc = {this.onDelete}/>
+          <FormContainer state = {state} stateChangeFunc = {this.onStateChange} />
        </div>
         
         <div className = 'col-md-6'>
