@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Input from '../presentational/input';
-import ToDoList from './to_do_list';
+import ToDoList from '../presentational/to_do_list';
 import PropTypes from 'prop-types';
-import initDate from './getDate.js'; 
+import initDate from '../../utility/getDate.js'; 
 
 class FormContainer extends Component {
   constructor(props) {

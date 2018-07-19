@@ -1,4 +1,4 @@
-function initDate() {
+const initDate = () => {
   const date = new Date();
   let month = (date.getMonth() + 1);
   month = month / 10 === 0 ? month : `0${month}`;
@@ -11,3 +11,5 @@ function initDate() {
   const initialDate = `${date.getFullYear()}-${month}-${dateInMonth}T${hours}:${mins}`;
   return initialDate;
 }
+
+export default initDate;

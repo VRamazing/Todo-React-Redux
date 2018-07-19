@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FormContainer from './form_container';
-import ToDoList from './to_do_list';
+import ToDoList from '../presentational/to_do_list';
 
 class App extends Component {
   constructor() {
