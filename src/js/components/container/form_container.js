@@ -27,22 +27,26 @@ class FormContainer extends Component {
       description: this.state.taskDescription,
       due: this.state.taskDueDate,
     };
+    if(todo.title != "" && todo.description != ""){
+      const newList = this.state.list.slice();
+      newList.push(todo);
 
-    const newList = this.state.list.slice();
-    newList.push(todo);
+      const todaysDate = initDate();
+      const dueTimeSecond = new Date(todo.due).getTime();
+      const todayTimeSecond = new Date(todaysDate).getTime();
 
-    const todaysDate = initDate();
-    const dueTimeSecond = new Date(todo.due).getTime();
-    const todayTimeSecond = new Date(todaysDate).getTime();
+      //Setting reminder
+      if (todo.title !== undefined) {
+        setTimeout(() => { window.alert(`${todo.title} is due completion`); }, dueTimeSecond - todayTimeSecond);
+      }
 
-    //Setting reminder
-    if (todo.title !== undefined) {
-      setTimeout(() => { window.alert(`${todo.title} is due completion`); }, dueTimeSecond - todayTimeSecond);
+      this.props.stateChangeFunc({
+        list: newList,
+      });
     }
-
-    this.props.stateChangeFunc({
-      list: newList,
-    });
+    else{
+      window.alert("Please enter a title and description")
+    }
   } 
 
   render() {

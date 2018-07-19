@@ -8,8 +8,8 @@ class App extends Component {
     super();
 
     this.state = {
-      taskTitle: 'something',
-      taskDescription: 'something else',
+      taskTitle: '',
+      taskDescription: '',
       taskDueDate: '',
       list: [
         { title: 'Start a Company', description: 'Before december', due: '2018-07-10T23:36' },
@@ -37,13 +37,13 @@ class App extends Component {
   }
 
   onEdit(item) {
-    this.state.taskTitle = item.title;
-    this.state.taskDescription = item.description;
+    this.setState({
+      taskTitle: item.title,
+      taskDescription: item.description,
+      taskDueDate: item.due
+    })
     this.onDelete(item);
   }
-
-  fun(){return "React is fun";}
-
 
   render() {
     const state = this.state;
