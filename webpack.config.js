@@ -2,33 +2,32 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
   module: {
     rules: [
+      {
+      test: /\.js$/i,
+      enforce: "pre",
+      exclude: /node_modules/,
+      use: [
+  	  {
+  	 	    loader: "eslint-loader",
+  	        options: {
+  	          failOnError: true,
+  	          failOnWarning: false,
+              fix: true
+              
+  	        },
+  	      },
+  	    ]
+  	  },
 
-    {
-    test: /\.js$/i,
-    enforce: "pre",
-    exclude: /node_modules/,
-    use: [
-	 {
-	 	    loader: "eslint-loader",
-	        options: {
-	          failOnError: false,
-	          failOnWarning: false,
-            fix: false
-            
-	        },
-	      },
-	    ]
-	  },
-
-	  {
-	    test: /\.js$/i,
-	    exclude: /node_modules/,
-	    use: [
-	      {
-	        loader: "babel-loader"
-	      }
-	    ],
-	  },
+  	  {
+  	    test: /\.js$/i,
+  	    exclude: /node_modules/,
+  	    use: [
+  	      {
+  	        loader: "babel-loader"
+  	      }
+  	    ],
+  	  },
 
       {
           test: /\.css$/,
@@ -48,6 +47,7 @@ module.exports = {
       }
     ]
   },
+  
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",

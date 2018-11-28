@@ -3,12 +3,14 @@
   "rules": {
   		"no-unused-vars": 0,
   		"linebreak-style": 0,
-  		"no-aler":0
+  		"no-alert":0,
+      "no-console": 0
   },
 
    "globals": {
     "document": true,
     "window": true,
+    "console": true
 
   },
    "extends": ["airbnb-base"],

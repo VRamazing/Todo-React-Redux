@@ -59,7 +59,7 @@ class FormContainer extends Component {
 
 
     if (todo.title !== undefined) {
-      setTimeout(() => { window.alert(`${todo.title} is due completion`); }, dueTimeSecond - todayTimeSecond);
+      setTimeout(() => { console.log(`${todo.title} is due completion`); }, dueTimeSecond - todayTimeSecond);
     }
 
     this.setState({
@@ -92,10 +92,14 @@ class FormContainer extends Component {
     const { taskDescription } = this.state;
     const { taskDueDate } = this.state;
 
-    const Todos = this.state.list.map((item, index) => (<ToDoList todo = {item} onDelete = {this.onDelete} key = {index} onEdit = {this.onEdit}/>));
+    const Todos = this.state.list.map((item, index) => 
+      <ToDoList todo = {item} 
+                onDelete = {this.onDelete} 
+                key = {index} 
+                onEdit = {this.onEdit}/>
+    );
 
     return (
-
       <div className = 'row'>
 
         <div className = 'col-md-6'>
